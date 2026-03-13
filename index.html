@@ -426,6 +426,1181 @@
     </div>
   </div>
 </section>
+
+<!-- CODE SNIPPETS SECTION - Carousel/Slider Interface -->
+<section id="code-snippets" class="code-snippets">
+  <div class="container">
+    
+    <!-- Section Header (Consistent across all snippets) -->
+    <div class="section-header">
+      <span class="section-tag">// code samples</span>
+      <h2>Code Snippets from Projects</h2>
+      <div class="header-indicator">
+        <span class="indicator-dot active"></span>
+        <span class="indicator-dot"></span>
+        <span class="indicator-dot"></span>
+        <span class="indicator-dot"></span>
+        <span class="indicator-dot"></span>
+        <span class="indicator-dot"></span>
+        <span class="indicator-dot"></span>
+      </div>
+    </div>
+    
+    <!-- Carousel Container -->
+    <div class="carousel-container">
+      
+      <!-- Snippets Carousel Track -->
+      <div class="carousel-track" id="snippetTrack">
+        
+        <!-- SLIDE 1: C++ - Thread Pool Implementation (Advanced) -->
+        <div class="snippet-slide active">
+          <div class="snippet-card">
+            <div class="snippet-card-inner">
+              <!-- Navigation Arrows Inside Content -->
+              <div class="card-navigation">
+                <button class="card-nav-btn prev-btn" onclick="navigateSnippet('prev')">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="slide-counter">1/7</span>
+                <button class="card-nav-btn next-btn" onclick="navigateSnippet('next')">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div class="snippet-header">
+                <div class="snippet-title-group">
+                  <h3>Thread Pool in Modern C++</h3>
+                  <span class="snippet-subtitle">Concurrent task processing with worker threads</span>
+                </div>
+                <div class="snippet-meta">
+                  <span class="snippet-language">
+                    <i class="fas fa-code"></i> C++
+                  </span>
+                  <span class="snippet-project-badge">Advanced</span>
+                </div>
+              </div>
+              
+              <div class="snippet-description">
+                <p>Efficient thread pool implementation for parallel task execution using modern C++ features.</p>
+              </div>
+              
+              <div class="code-block-container">
+                <div class="code-header">
+                  <div class="file-info">
+                    <i class="fas fa-file-code"></i>
+                    <span>ThreadPool.cpp</span>
+                  </div>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                
+                <div class="code-wrapper">
+                  <pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;thread&gt;
+#include &lt;queue&gt;
+#include &lt;functional&gt;
+#include &lt;mutex&gt;
+#include &lt;condition_variable&gt;
+
+class ThreadPool {
+private:
+    std::vector&lt;std::thread&gt; workers;
+    std::queue&lt;std::function&lt;void()&gt;&gt; tasks;
+    std::mutex queue_mutex;
+    std::condition_variable condition;
+    bool stop;
+
+public:
+    ThreadPool(size_t threads) : stop(false) {
+        for(size_t i = 0; i &lt; threads; ++i) {
+            workers.emplace_back([this] {
+                while(true) {
+                    std::function&lt;void()&gt; task;
+                    {
+                        std::unique_lock&lt;std::mutex&gt; lock(this-&gt;queue_mutex);
+                        this-&gt;condition.wait(lock, [this] {
+                            return this-&gt;stop || !this-&gt;tasks.empty();
+                        });
+                        if(this-&gt;stop && this-&gt;tasks.empty())
+                            return;
+                        task = std::move(this-&gt;tasks.front());
+                        this-&gt;tasks.pop();
+                    }
+                    task();
+                }
+            });
+        }
+    }
+
+    template&lt;class F&gt;
+    void enqueue(F&& f) {
+        {
+            std::unique_lock&lt;std::mutex&gt; lock(queue_mutex);
+            tasks.emplace(std::forward&lt;F&gt;(f));
+        }
+        condition.notify_one();
+    }
+
+    ~ThreadPool() {
+        {
+            std::unique_lock&lt;std::mutex&gt; lock(queue_mutex);
+            stop = true;
+        }
+        condition.notify_all();
+        for(std::thread &worker: workers) {
+            worker.join();
+        }
+    }
+};</code></pre>
+                </div>
+              </div>
+              
+              <div class="snippet-tags">
+                <span class="tag">#Multithreading</span>
+                <span class="tag">#Concurrency</span>
+                <span class="tag">#ModernC++</span>
+                <span class="tag">#Performance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- SLIDE 2: JavaScript - Student Management System -->
+        <div class="snippet-slide">
+          <div class="snippet-card">
+            <div class="snippet-card-inner">
+              <!-- Navigation Arrows Inside Content -->
+              <div class="card-navigation">
+                <button class="card-nav-btn prev-btn" onclick="navigateSnippet('prev')">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="slide-counter">2/7</span>
+                <button class="card-nav-btn next-btn" onclick="navigateSnippet('next')">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div class="snippet-header">
+                <div class="snippet-title-group">
+                  <h3>Student Management System - Core Logic</h3>
+                  <span class="snippet-subtitle">CRUD operations with grade calculation</span>
+                </div>
+                <div class="snippet-meta">
+                  <span class="snippet-language">
+                    <i class="fab fa-js"></i> JavaScript
+                  </span>
+                  <span class="snippet-project-badge">Intermediate</span>
+                </div>
+              </div>
+              
+              <div class="snippet-description">
+                <p>Complete student management with grade calculation and performance tracking.</p>
+              </div>
+              
+              <div class="code-block-container">
+                <div class="code-header">
+                  <div class="file-info">
+                    <i class="fas fa-file-code"></i>
+                    <span>StudentManager.js</span>
+                  </div>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                
+                <div class="code-wrapper">
+                  <pre><code class="language-javascript">class StudentManager {
+    constructor() {
+        this.students = new Map();
+        this.grades = new Map();
+    }
+
+    addStudent(studentData) {
+        const student = {
+            id: studentData.id || Date.now(),
+            name: studentData.name,
+            age: studentData.age,
+            grade: studentData.grade,
+            email: studentData.email,
+            enrollmentDate: new Date()
+        };
+        
+        this.students.set(student.id, student);
+        this.grades.set(student.id, []);
+        return student;
+    }
+
+    addGrade(studentId, subject, score) {
+        if (!this.students.has(studentId)) {
+            throw new Error('Student not found');
+        }
+        
+        const gradeEntry = {
+            subject: subject,
+            score: score,
+            date: new Date(),
+            letterGrade: this.calculateLetterGrade(score)
+        };
+        
+        const studentGrades = this.grades.get(studentId) || [];
+        studentGrades.push(gradeEntry);
+        this.grades.set(studentId, studentGrades);
+        
+        return gradeEntry;
+    }
+
+    calculateLetterGrade(score) {
+        if (score >= 90) return 'A';
+        if (score >= 80) return 'B';
+        if (score >= 70) return 'C';
+        if (score >= 60) return 'D';
+        return 'F';
+    }
+
+    getStudentGPA(studentId) {
+        const studentGrades = this.grades.get(studentId);
+        if (!studentGrades || studentGrades.length === 0) return 0;
+        
+        const total = studentGrades.reduce((sum, grade) => {
+            return sum + this.gradeToPoints(grade.letterGrade);
+        }, 0);
+        
+        return (total / studentGrades.length).toFixed(2);
+    }
+
+    gradeToPoints(letterGrade) {
+        const points = {
+            'A': 4.0, 'B': 3.0, 'C': 2.0, 'D': 1.0, 'F': 0.0
+        };
+        return points[letterGrade] || 0;
+    }
+}</code></pre>
+                </div>
+              </div>
+              
+              <div class="snippet-tags">
+                <span class="tag">#CRUD</span>
+                <span class="tag">#Map</span>
+                <span class="tag">#Education</span>
+                <span class="tag">#Logic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- SLIDE 3: Java - Employee Payroll Management System -->
+        <div class="snippet-slide">
+          <div class="snippet-card java-card">
+            <div class="snippet-card-inner">
+              <!-- Navigation Arrows Inside Content -->
+              <div class="card-navigation">
+                <button class="card-nav-btn prev-btn" onclick="navigateSnippet('prev')">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="slide-counter">3/7</span>
+                <button class="card-nav-btn next-btn" onclick="navigateSnippet('next')">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div class="snippet-header">
+                <div class="snippet-title-group">
+                  <h3>Employee Payroll Management System</h3>
+                  <span class="snippet-subtitle">Complete payroll calculation with tax & allowances</span>
+                </div>
+                <div class="snippet-meta">
+                  <span class="snippet-language java-lang">
+                    <i class="fab fa-java"></i> Java
+                  </span>
+                  <span class="snippet-project-badge java-badge">Enterprise</span>
+                </div>
+              </div>
+              
+              <div class="snippet-description">
+                <p>Full-featured payroll system with employee management, salary calculation, tax deductions, and payslip generation.</p>
+              </div>
+              
+              <div class="code-block-container">
+                <div class="code-header">
+                  <div class="file-info">
+                    <i class="fas fa-file-code"></i>
+                    <span>PayrollCalculator.java</span>
+                  </div>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                
+                <div class="code-wrapper">
+                  <pre><code class="language-java">import java.time.LocalDate;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
+
+// Employee Class
+class Employee {
+    private static final AtomicLong idGenerator = new AtomicLong(1000);
+    private final long employeeId;
+    private String firstName;
+    private String lastName;
+    private double monthlySalary;
+    private LocalDate hireDate;
+    private List&lt;Attendance&gt; attendanceRecords;
+    private List&lt;Benefit&gt; benefits;
+
+    public enum EmploymentType {
+        FULL_TIME, PART_TIME, CONTRACT
+    }
+    private EmploymentType employmentType;
+
+    public Employee(String firstName, String lastName, double monthlySalary, EmploymentType type) {
+        this.employeeId = idGenerator.getAndIncrement();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.monthlySalary = monthlySalary;
+        this.employmentType = type;
+        this.hireDate = LocalDate.now();
+        this.attendanceRecords = new ArrayList&lt;&gt;();
+        this.benefits = new ArrayList&lt;&gt;();
+    }
+
+    public long getEmployeeId() { return employeeId; }
+    public String getFullName() { return firstName + " " + lastName; }
+    public double getMonthlySalary() { return monthlySalary; }
+    public void addAttendance(Attendance attendance) { attendanceRecords.add(attendance); }
+    public List&lt;Attendance&gt; getAttendanceRecords() { return attendanceRecords; }
+    public void addBenefit(Benefit benefit) { benefits.add(benefit); }
+    public List&lt;Benefit&gt; getBenefits() { return benefits; }
+}
+
+// Attendance Class
+class Attendance {
+    private LocalDate date;
+    private double hoursWorked;
+    
+    public Attendance(LocalDate date, double hoursWorked) {
+        this.date = date;
+        this.hoursWorked = hoursWorked;
+    }
+    
+    public double getHoursWorked() { return hoursWorked; }
+}
+
+// Benefit Class
+class Benefit {
+    private String name;
+    private double amount;
+    private BenefitType type;
+    
+    public enum BenefitType {
+        ALLOWANCE, DEDUCTION
+    }
+    
+    public Benefit(String name, double amount, BenefitType type) {
+        this.name = name;
+        this.amount = amount;
+        this.type = type;
+    }
+    
+    public double getAmount() { return amount; }
+    public BenefitType getType() { return type; }
+}
+
+// Tax Calculator
+class TaxCalculator {
+    private static final double TAX_FREE_THRESHOLD = 60000;
+    private static final double SOCIAL_SECURITY_RATE = 0.07;
+    private static final double PENSION_RATE = 0.11;
+    
+    private static final TaxBracket[] TAX_BRACKETS = {
+        new TaxBracket(0, 6000, 0.0),
+        new TaxBracket(6001, 20000, 0.10),
+        new TaxBracket(20001, 40000, 0.15),
+        new TaxBracket(40001, 60000, 0.20),
+        new TaxBracket(60001, 100000, 0.25),
+        new TaxBracket(100001, Double.MAX_VALUE, 0.30)
+    };
+    
+    static class TaxBracket {
+        double lower; double upper; double rate;
+        TaxBracket(double l, double u, double r) { lower = l; upper = u; rate = r; }
+    }
+    
+    public static TaxResult calculateTax(double monthlyGross) {
+        double annualGross = monthlyGross * 12;
+        double annualTax = 0;
+        double remaining = annualGross;
+        
+        for (TaxBracket b : TAX_BRACKETS) {
+            if (remaining <= 0) break;
+            double taxable = Math.min(remaining, b.upper - b.lower);
+            annualTax += taxable * b.rate;
+            remaining -= taxable;
+        }
+        
+        double monthlyTax = annualTax / 12;
+        double socialSecurity = monthlyGross * SOCIAL_SECURITY_RATE;
+        double pension = monthlyGross * PENSION_RATE;
+        double netSalary = monthlyGross - monthlyTax - socialSecurity - pension;
+        
+        return new TaxResult(monthlyTax, socialSecurity, pension, netSalary);
+    }
+}
+
+class TaxResult {
+    double incomeTax; double socialSecurity; double pension; double netSalary;
+    TaxResult(double it, double ss, double p, double ns) {
+        incomeTax = it; socialSecurity = ss; pension = p; netSalary = ns;
+    }
+}
+
+// Payslip Class
+class Payslip {
+    private Employee employee;
+    private LocalDate payPeriod;
+    private double grossSalary;
+    private double netSalary;
+    private TaxResult taxResult;
+    private List&lt;Benefit&gt; allowances = new ArrayList&lt;&gt;();
+    private List&lt;Benefit&gt; deductions = new ArrayList&lt;&gt;();
+    
+    public Payslip(Employee emp, LocalDate period) {
+        this.employee = emp;
+        this.payPeriod = period;
+    }
+    
+    public void calculate() {
+        // Calculate base salary from attendance
+        double totalHours = employee.getAttendanceRecords().stream()
+            .filter(a -&gt; a.getDate().getMonth() == payPeriod.getMonth())
+            .mapToDouble(Attendance::getHoursWorked)
+            .sum();
+        
+        double hourlyRate = employee.getMonthlySalary() / 160;
+        double basePay = totalHours * hourlyRate;
+        
+        // Add allowances
+        double allowanceTotal = employee.getBenefits().stream()
+            .filter(b -&gt; b.getType() == Benefit.BenefitType.ALLOWANCE)
+            .mapToDouble(Benefit::getAmount)
+            .sum();
+        
+        // Subtract deductions
+        double deductionTotal = employee.getBenefits().stream()
+            .filter(b -&gt; b.getType() == Benefit.BenefitType.DEDUCTION)
+            .mapToDouble(Benefit::getAmount)
+            .sum();
+        
+        this.grossSalary = basePay + allowanceTotal;
+        this.taxResult = TaxCalculator.calculateTax(grossSalary);
+        this.netSalary = taxResult.netSalary - deductionTotal;
+    }
+    
+    public void printPayslip() {
+        System.out.println("\n" + "=".repeat(60));
+        System.out.println("           EMPLOYEE PAYSLIP");
+        System.out.println("=".repeat(60));
+        System.out.println("Employee: " + employee.getFullName());
+        System.out.println("Period: " + payPeriod.getMonth() + " " + payPeriod.getYear());
+        System.out.println("-".repeat(60));
+        System.out.printf("Gross Salary: $%.2f\n", grossSalary);
+        System.out.printf("Income Tax: $%.2f\n", taxResult.incomeTax);
+        System.out.printf("Social Security: $%.2f\n", taxResult.socialSecurity);
+        System.out.printf("Pension: $%.2f\n", taxResult.pension);
+        System.out.println("-".repeat(60));
+        System.out.printf("NET SALARY: $%.2f\n", netSalary);
+        System.out.println("=".repeat(60));
+    }
+}
+
+// Main Payroll Processor
+public class PayrollCalculator {
+    public static void main(String[] args) {
+        System.out.println("=".repeat(60));
+        System.out.println("   EMPLOYEE PAYROLL SYSTEM");
+        System.out.println("=".repeat(60));
+        
+        // Create employee
+        Employee emp = new Employee("John", "Smith", 85000, 
+            Employee.EmploymentType.FULL_TIME);
+        
+        // Add attendance
+        for (int day = 1; day <= 22; day++) {
+            emp.addAttendance(new Attendance(
+                LocalDate.now().withDayOfMonth(day), 8.5));
+        }
+        
+        // Add benefits
+        emp.addBenefit(new Benefit("Transport", 1500, Benefit.BenefitType.ALLOWANCE));
+        emp.addBenefit(new Benefit("Lunch", 800, Benefit.BenefitType.ALLOWANCE));
+        emp.addBenefit(new Benefit("Health Insurance", 2000, Benefit.BenefitType.DEDUCTION));
+        
+        // Generate payslip
+        Payslip payslip = new Payslip(emp, LocalDate.now());
+        payslip.calculate();
+        payslip.printPayslip();
+    }
+}</code></pre>
+                </div>
+              </div>
+              
+              <div class="snippet-tags">
+                <span class="tag">#OOP</span>
+                <span class="tag">#Inheritance</span>
+                <span class="tag">#Polymorphism</span>
+                <span class="tag">#Encapsulation</span>
+                <span class="tag">#Payroll</span>
+                <span class="tag">#Tax Calculation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- SLIDE 4: HTML - Beginner Friendly -->
+        <div class="snippet-slide">
+          <div class="snippet-card beginner-card">
+            <div class="snippet-card-inner">
+              <!-- Navigation Arrows Inside Content -->
+              <div class="card-navigation">
+                <button class="card-nav-btn prev-btn" onclick="navigateSnippet('prev')">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="slide-counter">4/7</span>
+                <button class="card-nav-btn next-btn" onclick="navigateSnippet('next')">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div class="snippet-header">
+                <div class="snippet-title-group">
+                  <h3>HTML5 - Semantic Layout Structure</h3>
+                  <span class="snippet-subtitle">Modern web page structure for beginners</span>
+                </div>
+                <div class="snippet-meta">
+                  <span class="snippet-language beginner-lang">
+                    <i class="fab fa-html5"></i> HTML
+                  </span>
+                  <span class="snippet-project-badge beginner-badge">Beginner Friendly</span>
+                </div>
+              </div>
+              
+              <div class="snippet-description">
+                <p>Clean, semantic HTML5 structure that every beginner should know for proper web page layout.</p>
+              </div>
+              
+              <div class="code-block-container">
+                <div class="code-header">
+                  <div class="file-info">
+                    <i class="fas fa-file-code"></i>
+                    <span>index.html</span>
+                  </div>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                
+                <div class="code-wrapper">
+                  <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+    &lt;meta name="description" content="A beginner-friendly HTML template"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Header Section --&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#services"&gt;Services&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Main Content --&gt;
+    &lt;main&gt;
+        &lt;section id="about"&gt;
+            &lt;h2&gt;About Us&lt;/h2&gt;
+            &lt;article&gt;
+                &lt;h3&gt;Our Story&lt;/h3&gt;
+                &lt;p&gt;We are passionate about creating amazing web experiences.&lt;/p&gt;
+                &lt;img src="about-image.jpg" alt="About us" width="300"&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;section id="services"&gt;
+            &lt;h2&gt;Our Services&lt;/h2&gt;
+            &lt;div class="service-grid"&gt;
+                &lt;div class="service-card"&gt;
+                    &lt;h3&gt;Web Design&lt;/h3&gt;
+                    &lt;p&gt;Beautiful, responsive designs&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="service-card"&gt;
+                    &lt;h3&gt;Development&lt;/h3&gt;
+                    &lt;p&gt;Clean, efficient code&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;!-- Footer Section --&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2024 My Website. All rights reserved.&lt;/p&gt;
+        &lt;div class="social-links"&gt;
+            &lt;a href="#"&gt;Facebook&lt;/a&gt; |
+            &lt;a href="#"&gt;Twitter&lt;/a&gt; |
+            &lt;a href="#"&gt;Instagram&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+              </div>
+              
+              <div class="snippet-tags">
+                <span class="tag">#SemanticHTML</span>
+                <span class="tag">#SEO</span>
+                <span class="tag">#Accessibility</span>
+                <span class="tag">#Beginner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- SLIDE 5: CSS - Beginner Friendly -->
+        <div class="snippet-slide">
+          <div class="snippet-card beginner-card">
+            <div class="snippet-card-inner">
+              <!-- Navigation Arrows Inside Content -->
+              <div class="card-navigation">
+                <button class="card-nav-btn prev-btn" onclick="navigateSnippet('prev')">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="slide-counter">5/7</span>
+                <button class="card-nav-btn next-btn" onclick="navigateSnippet('next')">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div class="snippet-header">
+                <div class="snippet-title-group">
+                  <h3>CSS Flexbox & Grid Layouts</h3>
+                  <span class="snippet-subtitle">Modern responsive layouts for beginners</span>
+                </div>
+                <div class="snippet-meta">
+                  <span class="snippet-language beginner-lang">
+                    <i class="fab fa-css3-alt"></i> CSS
+                  </span>
+                  <span class="snippet-project-badge beginner-badge">Beginner Friendly</span>
+                </div>
+              </div>
+              
+              <div class="snippet-description">
+                <p>Essential CSS layouts using Flexbox and Grid for responsive web design.</p>
+              </div>
+              
+              <div class="code-block-container">
+                <div class="code-header">
+                  <div class="file-info">
+                    <i class="fas fa-file-code"></i>
+                    <span>styles.css</span>
+                  </div>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                
+                <div class="code-wrapper">
+                  <pre><code class="language-css">/* CSS Variables for easy theming */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333;
+    --bg-light: #f9f9f9;
+    --spacing: 1rem;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Flexbox Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* CSS Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.project-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}</code></pre>
+                </div>
+              </div>
+              
+              <div class="snippet-tags">
+                <span class="tag">#Flexbox</span>
+                <span class="tag">#Grid</span>
+                <span class="tag">#Responsive</span>
+                <span class="tag">#Animations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- SLIDE 6: JavaScript - Beginner Friendly -->
+        <div class="snippet-slide">
+          <div class="snippet-card beginner-card">
+            <div class="snippet-card-inner">
+              <!-- Navigation Arrows Inside Content -->
+              <div class="card-navigation">
+                <button class="card-nav-btn prev-btn" onclick="navigateSnippet('prev')">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="slide-counter">6/7</span>
+                <button class="card-nav-btn next-btn" onclick="navigateSnippet('next')">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div class="snippet-header">
+                <div class="snippet-title-group">
+                  <h3>JavaScript DOM Manipulation</h3>
+                  <span class="snippet-subtitle">Interactive web features for beginners</span>
+                </div>
+                <div class="snippet-meta">
+                  <span class="snippet-language beginner-lang">
+                    <i class="fab fa-js"></i> JavaScript
+                  </span>
+                  <span class="snippet-project-badge beginner-badge">Beginner Friendly</span>
+                </div>
+              </div>
+              
+              <div class="snippet-description">
+                <p>Learn how to make your website interactive with DOM manipulation.</p>
+              </div>
+              
+              <div class="code-block-container">
+                <div class="code-header">
+                  <div class="file-info">
+                    <i class="fas fa-file-code"></i>
+                    <span>script.js</span>
+                  </div>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                
+                <div class="code-wrapper">
+                  <pre><code class="language-javascript">// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Element Selection
+    const header = document.querySelector('header');
+    const buttons = document.querySelectorAll('.btn');
+    const form = document.getElementById('contactForm');
+    
+    // Event Listeners
+    buttons.forEach(button => {
+        button.addEventListener('click', handleButtonClick);
+    });
+    
+    function handleButtonClick(event) {
+        const button = event.target;
+        console.log('Button clicked:', button.textContent);
+        
+        // Toggle class
+        button.classList.toggle('active');
+        
+        // Change content
+        button.textContent = button.classList.contains('active') 
+            ? 'Active' 
+            : 'Inactive';
+    }
+    
+    // Form Validation
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (!name || !email) {
+                showError('Please fill all fields');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showError('Please enter a valid email');
+                return;
+            }
+            
+            submitForm({ name, email });
+        });
+    }
+    
+    // Helper Functions
+    function isValidEmail(email) {
+        return email.includes('@') && email.includes('.');
+    }
+    
+    function showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        
+        document.body.prepend(errorDiv);
+        
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 3000);
+    }
+    
+    function submitForm(data) {
+        console.log('Form submitted:', data);
+        alert('Form submitted successfully!');
+    }
+    
+    // Dynamic Content Creation
+    function createCard(title, description) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        card.innerHTML = `
+            <h3>${title}</h3>
+            <p>${description}</p>
+            <button class="card-btn">Learn More</button>
+        `;
+        
+        return card;
+    }
+    
+    // Append multiple cards
+    const container = document.querySelector('.cards-container');
+    if (container) {
+        const projects = [
+            { title: 'Project 1', desc: 'Description 1' },
+            { title: 'Project 2', desc: 'Description 2' },
+            { title: 'Project 3', desc: 'Description 3' }
+        ];
+        
+        projects.forEach(proj => {
+            container.appendChild(createCard(proj.title, proj.desc));
+        });
+    }
+});</code></pre>
+                </div>
+              </div>
+              
+              <div class="snippet-tags">
+                <span class="tag">#DOM</span>
+                <span class="tag">#Events</span>
+                <span class="tag">#Forms</span>
+                <span class="tag">#Interactive</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- SLIDE 7: Python - Beginner Friendly -->
+        <div class="snippet-slide">
+          <div class="snippet-card beginner-card">
+            <div class="snippet-card-inner">
+              <!-- Navigation Arrows Inside Content -->
+              <div class="card-navigation">
+                <button class="card-nav-btn prev-btn" onclick="navigateSnippet('prev')">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="slide-counter">7/7</span>
+                <button class="card-nav-btn next-btn" onclick="navigateSnippet('next')">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div class="snippet-header">
+                <div class="snippet-title-group">
+                  <h3>Python - To-Do List CLI App</h3>
+                  <span class="snippet-subtitle">Command-line application for beginners</span>
+                </div>
+                <div class="snippet-meta">
+                  <span class="snippet-language beginner-lang">
+                    <i class="fab fa-python"></i> Python
+                  </span>
+                  <span class="snippet-project-badge beginner-badge">Beginner Friendly</span>
+                </div>
+              </div>
+              
+              <div class="snippet-description">
+                <p>Simple but practical to-do list application to learn Python basics.</p>
+              </div>
+              
+              <div class="code-block-container">
+                <div class="code-header">
+                  <div class="file-info">
+                    <i class="fas fa-file-code"></i>
+                    <span>todo.py</span>
+                  </div>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                
+                <div class="code-wrapper">
+                  <pre><code class="language-python">import json
+import os
+from datetime import datetime
+
+class TodoList:
+    def __init__(self, filename='tasks.json'):
+        self.filename = filename
+        self.tasks = self.load_tasks()
+    
+    def load_tasks(self):
+        """Load tasks from file"""
+        if os.path.exists(self.filename):
+            with open(self.filename, 'r') as file:
+                return json.load(file)
+        return []
+    
+    def save_tasks(self):
+        """Save tasks to file"""
+        with open(self.filename, 'w') as file:
+            json.dump(self.tasks, file, indent=2)
+    
+    def add_task(self, title, priority='medium'):
+        """Add a new task"""
+        task = {
+            'id': len(self.tasks) + 1,
+            'title': title,
+            'priority': priority,
+            'completed': False,
+            'created_at': datetime.now().isoformat(),
+            'completed_at': None
+        }
+        self.tasks.append(task)
+        self.save_tasks()
+        print(f"✅ Task added: {title}")
+    
+    def list_tasks(self, show_completed=False):
+        """Display all tasks"""
+        if not self.tasks:
+            print("📝 No tasks found!")
+            return
+        
+        print("\n" + "="*50)
+        print("YOUR TO-DO LIST")
+        print("="*50)
+        
+        for task in self.tasks:
+            if task['completed'] and not show_completed:
+                continue
+                
+            status = "✅" if task['completed'] else "⭕"
+            priority_mark = {
+                'high': '🔴',
+                'medium': '🟡',
+                'low': '🟢'
+            }.get(task['priority'], '⚪')
+            
+            print(f"{status} [{priority_mark}] #{task['id']}: {task['title']}")
+            
+            if task['completed'] and task['completed_at']:
+                print(f"   Completed: {task['completed_at'][:10]}")
+    
+    def complete_task(self, task_id):
+        """Mark task as completed"""
+        for task in self.tasks:
+            if task['id'] == task_id:
+                task['completed'] = True
+                task['completed_at'] = datetime.now().isoformat()
+                self.save_tasks()
+                print(f"✅ Task #{task_id} completed!")
+                return
+        
+        print(f"❌ Task #{task_id} not found!")
+    
+    def delete_task(self, task_id):
+        """Delete a task"""
+        initial_count = len(self.tasks)
+        self.tasks = [t for t in self.tasks if t['id'] != task_id]
+        
+        if len(self.tasks) < initial_count:
+            self.save_tasks()
+            print(f"🗑️ Task #{task_id} deleted!")
+        else:
+            print(f"❌ Task #{task_id} not found!")
+    
+    def get_statistics(self):
+        """Show task statistics"""
+        total = len(self.tasks)
+        completed = sum(1 for t in self.tasks if t['completed'])
+        pending = total - completed
+        
+        print("\n📊 STATISTICS")
+        print(f"Total tasks: {total}")
+        print(f"Completed: {completed}")
+        print(f"Pending: {pending}")
+        print(f"Progress: {completed/total*100:.1f}%" if total > 0 else "No tasks")
+
+# Main program
+def main():
+    todo = TodoList()
+    
+    while True:
+        print("\n" + "="*50)
+        print("📝 TO-DO LIST APPLICATION")
+        print("="*50)
+        print("1. Add Task")
+        print("2. List Tasks")
+        print("3. Complete Task")
+        print("4. Delete Task")
+        print("5. Show Statistics")
+        print("6. Exit")
+        
+        choice = input("\nEnter your choice (1-6): ").strip()
+        
+        if choice == '1':
+            title = input("Task title: ")
+            priority = input("Priority (high/medium/low) [medium]: ") or 'medium'
+            todo.add_task(title, priority)
+        
+        elif choice == '2':
+            show_all = input("Show completed tasks? (y/n): ").lower() == 'y'
+            todo.list_tasks(show_all)
+        
+        elif choice == '3':
+            try:
+                task_id = int(input("Task ID to complete: "))
+                todo.complete_task(task_id)
+            except ValueError:
+                print("❌ Please enter a valid number!")
+        
+        elif choice == '4':
+            try:
+                task_id = int(input("Task ID to delete: "))
+                todo.delete_task(task_id)
+            except ValueError:
+                print("❌ Please enter a valid number!")
+        
+        elif choice == '5':
+            todo.get_statistics()
+        
+        elif choice == '6':
+            print("👋 Goodbye!")
+            break
+        
+        else:
+            print("❌ Invalid choice!")
+
+if __name__ == "__main__":
+    main()</code></pre>
+                </div>
+              </div>
+              
+              <div class="snippet-tags">
+                <span class="tag">#CLI</span>
+                <span class="tag">#FileIO</span>
+                <span class="tag">#JSON</span>
+                <span class="tag">#Beginner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div> <!-- End Carousel Track -->
+      
+      <!-- Progress Indicators -->
+      <div class="carousel-indicators">
+        <span class="indicator active" data-index="0"></span>
+        <span class="indicator" data-index="1"></span>
+        <span class="indicator" data-index="2"></span>
+        <span class="indicator" data-index="3"></span>
+        <span class="indicator" data-index="4"></span>
+        <span class="indicator" data-index="5"></span>
+        <span class="indicator" data-index="6"></span>
+      </div>
+      
+    </div> <!-- End Carousel Container -->
+  </div>
+</section>
   
 <!-- EVOLUTION & GROWTH with INTEGRATED BLOG SECTION -->
 <section id="journey" class="journey">
