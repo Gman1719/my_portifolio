@@ -34,47 +34,51 @@
   <div class="container hero-container">
     <div class="hero-image">
       <img src="images/profile.jpg" alt="Getiye Demis Profile">
+      <div class="hero-image-badge">
+        <span>CS Student</span>
+      </div>
     </div>
     <div class="hero-content">
-      <h2>Hi there, welcome!</h2>
-      <h1>I am <span>Full-Stack Developer</span></h1>
-      <p>Motivated Computer Science student and MERN stack developer creating modern web solutions.</p>
+      <div class="hero-greeting-wrapper">
+        <span class="hero-greeting-emoji">
+        <p class="hero-greeting">Hi there, welcome! I'm  Getiye Demis Full-Stack Developer </p>
+      </div>
+      
+
+      
+      <div class="hero-description-card">
+        <div class="description-badge">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Computer Science Student @ Debre Berhan University</span>
+        </div>
+        
+        <p class="description-main">
+          <span class="highlight">Full-Stack Web Developer</span> focused on building modern, responsive, and scalable web applications. 
+          I enjoy turning ideas into real digital solutions by combining creative front-end design with efficient back-end development.
+        </p>
+        
+        <p class="description-extended">
+          Through academic learning and hands-on projects, I continuously strengthen my programming, problem-solving, and software development skills. 
+          I am passionate about learning new technologies, improving my development practices, and building applications that solve real-world problems 
+          and create meaningful digital experiences.
+        </p>
+        
+        <div class="description-quote">
+          <i class="fas fa-quote-left"></i>
+          <p>Building applications that solve real-world problems and create meaningful digital experiences</p>
+        </div>
+      </div>
+      
       <div class="hero-btns">
         <a href="#contact" class="btn btn-primary">Hire Me</a>
-        <a href="#projects" class="btn btn-secondary" style="margin-left: 10px;">View Work</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="about">
-  <div class="container">
-    <h2>About Me</h2>
-
-    <div class="project-card about-card"> 
-      <p>
-        Motivated Computer Science student and Full-Stack Developer with experience in frontend, backend, and database development.
-      </p>
-
-      <!-- Hidden extra content -->
-      <div class="about-more" id="aboutMore">
-        <p>
-          I enjoy building modern, responsive web applications and solving real-world problems using technology.
-          I have hands-on experience with MERN stack development, database design, and version control systems.
-          I am passionate about continuous learning, teamwork, and writing clean, maintainable code.
-        </p>
-      </div>
-
-      <div style="margin-top: 1.5rem;">
-        <button class="btn btn-secondary" id="readMoreBtn">Read More</button>
-        <a href="assets/resume.pdf" class="btn btn-secondary" target="_blank" style="margin-left:10px;">
-          View Resume
+        <a href="#projects" class="btn btn-secondary">View Work</a>
+        <a href="assets/resume.pdf" class="btn btn-outline" target="_blank">
+          <i class="fas fa-file-pdf"></i> View Resume
         </a>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- Skills Section -->
 <section id="skills" class="skills">
@@ -423,127 +427,257 @@
 
     </div>
   </div>
-<!-- Evolution & Growth Roadmap -->
-<section id="journey" class="journey">
-  <div class="container">
-    <h2>Evolution & Growth</h2>
-    <p class="journey-subtitle">Every expert was once a beginner — here's how I leveled up</p>
-    
-    <div class="roadmap-grid">
+  
+  <!-- Evolution & Growth Roadmap -->
+  <section id="journey" class="journey">
+    <div class="container">
+      <h2>Evolution & Growth</h2>
+      <p class="journey-subtitle">Every expert was once a beginner — here's how I leveled up</p>
       
-      <!-- 1. Academic Foundation -->
-      <div class="roadmap-card">
-        <div class="card-header">
-          <div class="roadmap-marker">1</div>
-          <h3>🌱 The Beginning</h3>
+      <div class="roadmap-grid">
+        
+        <!-- 1. Academic Foundation -->
+        <div class="roadmap-card">
+          <div class="card-header">
+            <div class="roadmap-marker">1</div>
+            <h3>The Beginning</h3>
+          </div>
+          <span class="roadmap-date">2008 – Present</span>
+          <p>Started from zero at Debre Birhan University, learning to think like a programmer</p>
+          <div class="roadmap-tags">
+            <span>C++</span><span>Python</span><span>Java</span><span>JavaScript</span>
+          </div>
         </div>
-        <span class="roadmap-date">2016 – Present</span>
-        <p>Started from zero at Debre Birhan University, learning to think like a programmer</p>
-        <div class="roadmap-tags">
-          <span>C++</span><span>Python</span><span>Java</span><span>JavaScript</span>
+        
+        <!-- 2. Technical Mastery -->
+        <div class="roadmap-card">
+          <div class="card-header">
+            <div class="roadmap-marker">2</div>
+            <h3>Building Real Things</h3>
+          </div>
+          <span class="roadmap-date">2015 – Present</span>
+          <p>Moved beyond tutorials — built my first complete web apps that actually work</p>
+          <div class="roadmap-tags">
+            <span>React</span><span>Node.js</span><span>PHP</span><span>Bootstrap</span>
+          </div>
         </div>
+        
+        <!-- 3. Real-World Application -->
+        <div class="roadmap-card">
+          <div class="card-header">
+            <div class="roadmap-marker">3</div>
+            <h3>From Local to Live</h3>
+          </div>
+          <span class="roadmap-date">2017 – Present</span>
+          <p>First projects deployed — learned that real users change everything</p>
+          <div class="roadmap-tags">
+            <span>Deployment</span><span>Project Mgmt</span><span>End-to-End</span>
+          </div>
+        </div>
+        
+        <!-- 4. Full-Stack Expertise -->
+        <div class="roadmap-card">
+          <div class="card-header">
+            <div class="roadmap-marker">4</div>
+            <h3>Thinking Like a Pro</h3>
+          </div>
+          <span class="roadmap-date">2017 – Present</span>
+          <p>Started caring about how things look AND how they work under the hood</p>
+          <div class="roadmap-tags">
+            <span>UI/UX</span><span>API Design</span><span>Databases</span>
+          </div>
+        </div>
+        
+        <!-- 5. Professional Growth -->
+        <div class="roadmap-card">
+          <div class="card-header">
+            <div class="roadmap-marker">5</div>
+            <h3>Beyond Code</h3>
+          </div>
+          <span class="roadmap-date">Ongoing</span>
+          <p>Discovered that great developers also need people skills</p>
+          <div class="roadmap-tags">
+            <span>Teamwork</span><span>Communication</span><span>Problem-Solving</span>
+          </div>
+        </div>
+        
+        <!-- 6. Future Vision -->
+        <div class="roadmap-card">
+          <div class="card-header">
+            <div class="roadmap-marker future-marker">6</div>
+            <h3>What's Next</h3>
+          </div>
+          <span class="roadmap-date">Next Steps</span>
+          <p>Building bigger, building smarter — apps that actually help people</p>
+          <div class="roadmap-tags">
+            <span>Innovation</span><span>Scalability</span><span>Best Practices</span>
+          </div>
+        </div>
+        
       </div>
-      
-      <!-- 2. Technical Mastery -->
-      <div class="roadmap-card">
-        <div class="card-header">
-          <div class="roadmap-marker">2</div>
-          <h3>⚡ Building Real Things</h3>
-        </div>
-        <span class="roadmap-date">2023 – Present</span>
-        <p>Moved beyond tutorials — built my first complete web apps that actually work</p>
-        <div class="roadmap-tags">
-          <span>React</span><span>Node.js</span><span>PHP</span><span>Bootstrap</span>
-        </div>
-      </div>
-      
-      <!-- 3. Real-World Application -->
-      <div class="roadmap-card">
-        <div class="card-header">
-          <div class="roadmap-marker">3</div>
-          <h3>🚀 From Local to Live</h3>
-        </div>
-        <span class="roadmap-date">2025 – Present</span>
-        <p>First projects deployed — learned that real users change everything</p>
-        <div class="roadmap-tags">
-          <span>Deployment</span><span>Project Mgmt</span><span>End-to-End</span>
-        </div>
-      </div>
-      
-      <!-- 4. Full-Stack Expertise -->
-      <div class="roadmap-card">
-        <div class="card-header">
-          <div class="roadmap-marker">4</div>
-          <h3>🎨 Thinking Like a Pro</h3>
-        </div>
-        <span class="roadmap-date">2025 – Present</span>
-        <p>Started caring about how things look AND how they work under the hood</p>
-        <div class="roadmap-tags">
-          <span>UI/UX</span><span>API Design</span><span>Databases</span>
-        </div>
-      </div>
-      
-      <!-- 5. Professional Growth -->
-      <div class="roadmap-card">
-        <div class="card-header">
-          <div class="roadmap-marker">5</div>
-          <h3>🤝 Beyond Code</h3>
-        </div>
-        <span class="roadmap-date">Ongoing</span>
-        <p>Discovered that great developers also need people skills</p>
-        <div class="roadmap-tags">
-          <span>Teamwork</span><span>Communication</span><span>Problem-Solving</span>
-        </div>
-      </div>
-      
-      <!-- 6. Future Vision -->
-      <div class="roadmap-card">
-        <div class="card-header">
-          <div class="roadmap-marker future-marker">6</div>
-          <h3>🔭 What's Next</h3>
-        </div>
-        <span class="roadmap-date">Next Steps</span>
-        <p>Building bigger, building smarter — apps that actually help people</p>
-        <div class="roadmap-tags">
-          <span>Innovation</span><span>Scalability</span><span>Best Practices</span>
-        </div>
-      </div>
-      
     </div>
+  </section>
+  <section id="blog" class="blog">
+  <div class="container blog-container">
+
+    <h2 class="blog-title">My Journey Learning Web Development at Debre Berhan University</h2>
+
+    <article class="blog-content">
+
+      <h3>Introduction</h3>
+      <p>
+        Web development is one of the most exciting areas in technology today. It allows developers to create applications that people can use from anywhere in the world through a web browser. As a Computer Science student at Debre Berhan University, my journey into web development started with curiosity about how websites and web applications work. Over time, this curiosity turned into a passion for building digital solutions and learning modern development technologies.
+      </p>
+
+      <h3>How My Journey Started</h3>
+      <p>
+        When I first began studying Computer Science, I was introduced to programming languages such as C++, Java, and Python. These languages helped me understand the fundamentals of programming, including logic, algorithms, and problem-solving. However, I became especially interested in web development because it combines creativity with technical skills.
+      </p>
+
+      <p>My first exposure to web development started with learning the core technologies of the web:</p>
+
+      <ul>
+        <li>HTML for structuring web pages</li>
+        <li>CSS for designing and styling user interfaces</li>
+        <li>JavaScript for adding interactivity and dynamic behavior</li>
+      </ul>
+
+      <p>
+        Learning these technologies allowed me to build my first simple websites and understand how front-end development works.
+      </p>
+
+      <h3>Learning Full-Stack Development</h3>
+      <p>
+        After understanding the basics of front-end development, I became interested in how the back-end of web applications works. This led me to explore server-side programming and databases. I started learning technologies such as:
+      </p>
+
+      <ul>
+        <li>Node.js for building server-side applications</li>
+        <li>PHP for web development</li>
+        <li>MySQL and MongoDB for managing databases</li>
+        <li>React for building modern user interfaces</li>
+      </ul>
+
+      <p>
+        These technologies helped me understand how full-stack web applications are developed, where both the client side and server side work together to deliver a complete solution.
+      </p>
+
+      <h3>Projects I Built</h3>
+      <p>
+        To strengthen my skills, I focused on building real projects instead of only studying theory. Some of the projects I developed include:
+      </p>
+
+      <h4>Cafe Management System</h4>
+      <p>
+        A web-based application that helps manage menu items, customer orders, and billing processes in a cafe. This project allowed me to practice front-end design, user interaction, and database integration.
+      </p>
+
+      <h4>Employee Payroll Management System</h4>
+      <p>
+        A Java-based system designed to manage employee records and automate payroll calculations. This project helped me apply object-oriented programming principles and database management concepts.
+      </p>
+
+      <h4>Personal Portfolio Website</h4>
+      <p>
+        A responsive website that showcases my skills, projects, and development journey. It includes sections such as skills, projects, contact information, and a growth timeline. This project helped me improve my front-end design skills and demonstrate my work to others.
+      </p>
+
+      <h3>What I Learned From These Projects</h3>
+      <p>
+        Building these projects taught me several important lessons about software development:
+      </p>
+
+      <ul>
+        <li>The importance of writing clean and organized code</li>
+        <li>How to debug and solve programming problems</li>
+        <li>The value of version control systems like Git and GitHub</li>
+        <li>How to design user-friendly interfaces</li>
+        <li>The importance of continuous learning in technology</li>
+      </ul>
+
+      <p>
+        Each project helped me grow as a developer and gave me practical experience in building real applications.
+      </p>
+
+      <h3>Challenges I Faced</h3>
+      <p>
+        Learning web development was not always easy. Sometimes I faced challenges such as debugging errors, understanding complex frameworks, and integrating different technologies together. However, these challenges helped me develop patience and problem-solving skills. By researching solutions, practicing regularly, and experimenting with code, I gradually improved my abilities.
+      </p>
+
+      <h3>My Future Goals</h3>
+      <p>
+        As I continue my studies at Debre Berhan University, my goal is to become a professional Full-Stack Developer who can design and build scalable web applications. I want to continue learning modern technologies, improving my development practices, and contributing to meaningful projects that solve real-world problems.
+      </p>
+
+      <h3>Conclusion</h3>
+      <p>
+        Web development has become an important part of my journey as a Computer Science student. It allows me to combine creativity, logical thinking, and technical knowledge to build applications that people can use and benefit from. I believe that continuous learning, practice, and real-world project development are the keys to becoming a successful developer.
+      </p>
+
+    </article>
+
   </div>
 </section>
+  
+  <!-- CONTACT SECTION -->
   <section id="contact" class="contact">
     <div class="container">
       <h2>Contact Me</h2>
       <div class="contact-grid">
         <div class="contact-info">
-          <p><strong>Email:</strong> getiyedemis17@gmail.com</p>
-          <p><strong>Phone:</strong> +251 906902551</p>
-          <p><strong>Location:</strong> Debre Birhan, Ethiopia</p>
+          <div class="contact-header">
+            <i class="fas fa-paper-plane"></i>
+            <h3>Get in Touch</h3>
+          </div>
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>Email</strong>
+                <span>getiyedemis17@gmail.com</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <strong>Phone</strong>
+                <span>+251 906902551</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong>Location</strong>
+                <span>Debre Birhan, Ethiopia</span>
+              </div>
+            </div>
+          </div>
         </div>
-      <form id="contactForm" action="https://formspree.io/f/xdadqrjw" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit" class="btn btn-primary">Send Message</button>
-</form>
+        
+        <form id="contactForm" action="https://formspree.io/f/xdadqrjw" method="POST">
+          <h3>Send a Message</h3>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
       </div>
     </div>
   </section>
 
- <footer>
-  <div class="container">
-    <div class="social-links">
-      <a href="https://www.tiktok.com/@getiye_demis" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a href="https://www.instagram.com/getiyedemis17" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://github.com/Gman1719" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://web.telegram.org/k/" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-      <a href="https://www.linkedin.com/in/getiye-demis-702450258/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@getiye_demis" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/getiyedemis17" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/Gman1719" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://web.telegram.org/k/" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.linkedin.com/in/getiye-demis-702450258/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <p>© <span id="year"></span> Getiye Demis. All rights reserved.</p>
     </div>
-    <p>© <span id="year"></span> Getiye Demis. All rights reserved.</p>
-
-  </div>
-</footer>
+  </footer>
 
   <script src="js/main.js"></script>
 </body>
