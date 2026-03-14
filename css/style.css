@@ -415,7 +415,6 @@ body.light-theme .navbar {
   transform: translateY(-3px);
 }
 
-/* ===== SKILLS SECTION - UPDATED WITH SMALLER CARDS ===== */
 /* ===== SKILLS SECTION - MODERN MINIMAL CARDS ===== */
 .skills-minimal {
   background: var(--bg-dark);
@@ -637,7 +636,7 @@ body.light-theme .navbar {
   box-shadow: 0 5px 10px rgba(0, 210, 255, 0.3);
 }
 
-/* Technology colors for icons - keeping the same */
+/* Technology colors for icons */
 .html-bg { background: linear-gradient(135deg, #e34f26, #ff764a); }
 .css-bg { background: linear-gradient(135deg, #1572b6, #33a9dc); }
 .js-bg { background: linear-gradient(135deg, #f7df1e, #f0b400); }
@@ -657,7 +656,7 @@ body.light-theme .navbar {
 .github-bg { background: linear-gradient(135deg, #333, #24292e); }
 .canva-bg { background: linear-gradient(135deg, #00C4CC, #1FA2B2); }
 
-/* Light theme adjustments */
+/* Light theme adjustments for skills */
 body.light-theme .skill-mini-card {
   background: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -675,72 +674,6 @@ body.light-theme .skill-mini-card small {
 body.light-theme .skill-mini-card:hover small {
   background: var(--primary-color);
   color: white;
-}
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .skills-mini-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .skills-mini-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .skills-row-title {
-    font-size: 1.1rem;
-    padding: 0.4rem 1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .skills-mini-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-  
-  .skill-mini-card {
-    padding: 0.8rem 0.4rem;
-  }
-  
-  .skill-mini-icon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .skill-mini-icon i {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .skills-mini-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Animation keyframes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Optional: Add a floating animation to icons on hover */
-.skill-mini-card:hover .skill-mini-icon i {
-  animation: iconFloat 0.5s ease-in-out;
-}
-
-@keyframes iconFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
 }
 
 /* ===== PROJECTS SECTION ===== */
@@ -1791,34 +1724,25 @@ body.light-theme .code-wrapper::-webkit-scrollbar-thumb {
   transform: translateX(5px);
 }
 
-/* Journey Connect Text */
+/* ===== JOURNEY CONNECT SECTION - UPDATED STYLING ===== */
 .journey-connect {
   text-align: center;
-  margin: 3rem 0 2rem;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, var(--glass), rgba(0, 210, 255, 0.05));
-  border-radius: var(--border-radius-lg);
+  margin: 3rem auto 2rem;
+  padding: 1.2rem 2rem;
+  background: var(--glass);
+  border-radius: 60px;
   border: 1px solid var(--glass-border);
+  max-width: 700px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-.journey-connect::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--primary-color), transparent, var(--secondary-color));
-  border-radius: 32px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.journey-connect:hover::before {
-  opacity: 0.3;
+.journey-connect:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 210, 255, 0.2);
 }
 
 .journey-connect p {
@@ -1827,17 +1751,18 @@ body.light-theme .code-wrapper::-webkit-scrollbar-thumb {
   justify-content: center;
   gap: 0.8rem;
   color: var(--text-soft);
-  font-size: 1.1rem;
+  font-size: 1rem;
+  margin: 0;
 }
 
 .connect-icon {
-  font-size: 1.5rem;
-  animation: bounce 2s infinite;
+  font-size: 1.6rem;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 5px rgba(0, 210, 255, 0.3));
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+.journey-connect:hover .connect-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 /* Blog Toggle Button */
@@ -1899,7 +1824,7 @@ body.light-theme .code-wrapper::-webkit-scrollbar-thumb {
   transform: translateY(3px);
 }
 
-/* Blog Content - Enhanced */
+/* Blog Content */
 .blog-content {
   background: linear-gradient(135deg, var(--bg-card), rgba(21, 31, 47, 0.9));
   border-radius: var(--border-radius-lg);
@@ -2060,6 +1985,15 @@ body.light-theme .code-wrapper::-webkit-scrollbar-thumb {
 
 .blog-close-btn:hover .close-icon {
   transform: rotate(90deg);
+}
+
+/* Light theme adjustments for journey section */
+body.light-theme .journey-connect {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-theme .blog-content {
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -2250,7 +2184,7 @@ footer {
     max-width: 550px;
   }
   
-  .skills-grid {
+  .skills-mini-grid {
     grid-template-columns: repeat(4, 1fr);
   }
   
@@ -2279,7 +2213,7 @@ footer {
     margin-right: auto;
   }
   
-  .skills-grid {
+  .skills-mini-grid {
     grid-template-columns: repeat(3, 1fr);
   }
   
@@ -2321,11 +2255,30 @@ footer {
   .blog-post ul {
     grid-template-columns: 1fr;
   }
+  
+  .journey-connect {
+    padding: 1rem 1.5rem;
+    margin: 2rem auto 1.5rem;
+  }
+  
+  .journey-connect p {
+    font-size: 0.95rem;
+    gap: 0.6rem;
+  }
+  
+  .connect-icon {
+    font-size: 1.4rem;
+  }
 }
 
 @media (max-width: 576px) {
-  .skills-grid {
+  .skills-mini-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  
+  .journey-connect p {
+    flex-wrap: wrap;
   }
 }
 
@@ -2347,12 +2300,8 @@ footer {
     justify-content: center;
   }
   
-  .skills-grid {
+  .skills-mini-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .skill-card {
-    max-width: 100%;
   }
   
   .blog-toggle-btn {
@@ -2406,6 +2355,27 @@ footer {
   .indicator.active {
     width: 24px;
   }
+  
+  .journey-connect {
+    padding: 0.8rem 1.2rem;
+    border-radius: 40px;
+  }
+  
+  .journey-connect p {
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+  }
+  
+  .connect-icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .skills-mini-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== ANIMATIONS ===== */
@@ -2420,8 +2390,13 @@ footer {
   }
 }
 
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
 .hero-content,
-.skill-card,
+.skill-mini-card,
 .project-card,
 .roadmap-card,
 .contact-info,
@@ -2429,4 +2404,65 @@ form,
 .blog-content,
 .github-card {
   animation: fadeInUp 0.6s ease forwards;
+}
+/* ===== JOURNEY SUBTITLE STYLING - SMALL ===== */
+.journey-subtitle {
+  text-align: center;
+  color: var(--text-soft);
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  font-weight: 400;
+  position: relative;
+  padding: 0 0.8rem;
+}
+
+/* Subtle gradient line at bottom */
+.journey-subtitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--gradient);
+  border-radius: 2px;
+  opacity: 0.3;
+}
+
+/* Light theme adjustment */
+body.light-theme .journey-subtitle {
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .journey-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+  }
+  
+  .journey-subtitle::after {
+    width: 35px;
+    bottom: -6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .journey-subtitle {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+    line-height: 1.5;
+    margin-bottom: 1.8rem;
+  }
+  
+  .journey-subtitle::after {
+    width: 30px;
+    bottom: -5px;
+  }
 }
