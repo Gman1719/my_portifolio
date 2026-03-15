@@ -267,7 +267,7 @@ body.light-theme .navbar {
 
 .hero-description-card {
   background: var(--bg-card);
-  border: 1px solid var(--glass-border);
+  
   border-radius: var(--border-radius-lg);
   padding: 2rem;
   margin: 1.5rem 0;
@@ -320,7 +320,7 @@ body.light-theme .navbar {
   padding: 1.2rem;
   background: var(--glass);
   border-radius: var(--border-radius-md);
-  border-left: 3px solid var(--primary-color);
+  
 }
 
 .description-quote {
